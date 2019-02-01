@@ -1,0 +1,23 @@
+package ocp_q;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Answer {
+	private String answer;
+	private boolean isTrue = false;
+	
+	public Answer(String answer, boolean isTrue) {
+		super();
+		this.answer = answer;
+		this.isTrue = isTrue;
+	}
+	public String getAnswer() {
+		return answer;
+	}
+	public boolean isTrue() {
+		return isTrue;
+	}
+	
+	
+}

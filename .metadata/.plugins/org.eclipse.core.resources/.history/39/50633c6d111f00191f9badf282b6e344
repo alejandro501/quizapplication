@@ -1,0 +1,6 @@
+package ocp_q;
+
+public class Question {
+	private String question;
+	private Answer answers;
+}

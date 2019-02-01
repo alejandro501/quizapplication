@@ -1,0 +1,21 @@
+package ocp_q;
+
+import java.util.List;
+import java.util.Scanner;
+
+public class QuestionRepository {
+	private List<Question> questions;
+
+	public List<Question> getQuestions() {
+		return questions;
+	}
+	
+	public void add(Question q){
+		questions.add(q);
+	}
+	
+	public void uploadQuestionFromUser(){
+		Scanner scan = new Scanner(System.in);
+		String question = 
+	}
+}

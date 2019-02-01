@@ -1,0 +1,37 @@
+package application;
+
+import java.util.Scanner;
+
+import quiz.MultipleCoiceQuiz;
+import quiz.ShortAnswerQuiz;
+import repository.MultipleChoiceQRepo;
+import repository.ShortAnswerQRepo;
+
+public class Application {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Multiple choice or short answers? \n1. Multiple choice\nShort answers?");
+		// TODO: Handle incorrect user input format
+		if (scan.nextLine().trim().toLowerCase().equals("1")) {
+			System.out.println("add/get?");
+			if (scan.nextLine().trim().toLowerCase().equals("add")) {
+				MultipleChoiceQRepo qRepo = new MultipleChoiceQRepo();
+				qRepo.uploadQuestionFromUser();
+			} else {
+				new MultipleCoiceQuiz();
+			}
+		}
+		if(scan.nextLine().trim().toLowerCase().equals("2")){
+			System.out.println("add/get?");
+			if (scan.nextLine().trim().toLowerCase().equals("add")) {
+				ShortAnswerQRepo qRepo = new ShortAnswerQRepo();
+				qRepo.uploadQuestionFromUser();
+			} else {
+				new ShortAnswerQuiz();
+			}
+		}
+
+		scan.close();
+	}
+}

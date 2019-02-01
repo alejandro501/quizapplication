@@ -1,0 +1,21 @@
+package ocp_q;
+
+import java.util.Scanner;
+
+public class Application {
+	
+	public static void main(String[] args){
+		Scanner scan = new Scanner(System.in);
+		System.out.println("add/get?");
+		if(scan.nextLine().trim().toLowerCase().equals("add")) {
+			QuestionRepository qRepo = new QuestionRepository();
+			qRepo.uploadQuestionFromUser();
+		}
+		else {
+			Quiz quiz = new Quiz();
+			quiz.startQuiz();
+			
+		}
+	}
+
+}

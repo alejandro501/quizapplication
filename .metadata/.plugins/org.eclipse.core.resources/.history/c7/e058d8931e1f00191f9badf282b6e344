@@ -1,0 +1,18 @@
+package ocp_q;
+
+public class Answer {
+	private String answer;
+	private boolean isTrue;
+	
+	public Answer(String answer, boolean isTrue) {
+		super();
+		this.answer = answer;
+		this.isTrue = isTrue;
+	}
+	public String getAnswer() {
+		return answer;
+	}
+	public boolean isTrue() {
+		return isTrue;
+	}
+}

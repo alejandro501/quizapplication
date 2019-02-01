@@ -1,0 +1,2 @@
+"# quizapplication"  initgit add README.mdgit commit -m "first commit"git remote add origin https://github.com/alexanderphoen1x/quizapplication.gitgit push -u origin master
+"# quizapplication"  initgit add README.mdgit commit -m "first commit"git remote add origin https://github.com/alexanderphoen1x/quizapplication.gitgit push -u origin master

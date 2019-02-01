@@ -1,0 +1,27 @@
+package pojo;
+
+import java.util.List;
+
+import i.pojo.Question;
+
+public class MultipleChoiceQuestion implements Question {
+	private String question;
+	private List<MultipleChoiceAnswer> answers;
+	
+	public MultipleChoiceQuestion(String question, List<MultipleChoiceAnswer> answers) {
+		super();
+		this.question = question;
+		this.answers = answers;
+	}
+	public String getQuestion() {
+		return question;
+	}
+
+	public List<MultipleChoiceAnswer> getAnswers() {
+		return answers;
+	}
+	@Override
+	public String toString() {
+		return "Question [question=" + question + ", answers=" + answers + "]";
+	}
+}

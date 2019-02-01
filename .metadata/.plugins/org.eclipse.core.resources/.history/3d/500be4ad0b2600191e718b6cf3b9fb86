@@ -1,0 +1,16 @@
+package ocp_q;
+
+public class ShortAnswer {
+	private String answer;
+
+	public ShortAnswer(String answer) {
+		super();
+		this.answer = answer;
+	}
+
+	public String getAnswer() {
+		return answer;
+	}
+	
+	
+}

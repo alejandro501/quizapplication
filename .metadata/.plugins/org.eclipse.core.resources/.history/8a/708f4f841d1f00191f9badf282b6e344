@@ -1,0 +1,26 @@
+package ocp_q;
+
+import java.util.List;
+import java.util.Scanner;
+
+public class QuestionRepository {
+	private List<Question> questions;
+
+	public List<Question> getQuestions() {
+		return questions;
+	}
+	
+	public void add(Question q){
+		questions.add(q);
+	}
+	
+	public void uploadQuestionFromUser(){
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter question");
+		String question = scan.nextLine();
+		System.out.println("Enter first answer.");
+		String answer = scan.nextLine();
+		System.out.println("Is it true? y/n");
+		boolean isTrue = scan.nextLine().equals("y") ? true : false;
+	}
+}

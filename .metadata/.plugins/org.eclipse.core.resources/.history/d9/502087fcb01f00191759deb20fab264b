@@ -1,0 +1,76 @@
+package ocp_q;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+
+public class QuestionRepository {
+	private List<Question> questions = new ArrayList();
+	
+	public QuestionRepository() {
+		super();
+		this.populate();
+		System.out.println(this.questions.size());
+	}
+	
+	private void populate(){
+		this.questions.add(new Question("What is the capital of Hungary?", 
+				Arrays.asList(new Answer("who cares", false), 
+							  new Answer("Bucharest", false), 
+							  new Answer("kurvaanyad", true), 
+							  new Answer("votkatt", true))));
+		
+		this.questions.add(new Question("question", 
+				Arrays.asList(new Answer("answer1", false), 
+							  new Answer("answer2", false), 
+							  new Answer("answer3", true))));
+		
+		this.questions.add(new Question("question", 
+				Arrays.asList(new Answer("answer1", false), 
+							  new Answer("answer2", false), 
+							  new Answer("answer3", true))));
+		
+		this.questions.add(new Question("question", 
+				Arrays.asList(new Answer("answer1", false), 
+							  new Answer("answer2", false), 
+							  new Answer("answer3", true))));
+	}
+
+	public List<Question> getQuestions() {
+		return questions;
+	}
+	
+	public void add(Question q){
+		questions.add(q);
+	}
+	
+	public void uploadQuestionFromUser(){
+		List<Answer> answers = new ArrayList();
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter question");
+		String question = scan.nextLine();
+		while(true){
+			System.out.println("Enter answer.");
+			String answer = scan.nextLine();
+			System.out.println("Is it true? y/n");
+			boolean isTrue = scan.nextLine().trim().toLowerCase().equals("y") ? true : false;
+			answers.add(new Answer(answer, isTrue));
+			System.out.println("Do you have another answer? y/n");
+			if(scan.nextLine().trim().toLowerCase().equals("n")) break;
+		}
+		
+		Question q = new Question(question, answers);
+		this.questions.add(q);
+		System.out.println("Question added: "+q + "question list size: "+this.questions.size());
+	}
+	
+	public List<Question> getRandomQuestions(int num){
+		List<Question> result = new ArrayList();
+		int rand = (int) Math.floor(Math.random() * ( (questions.size()-1) - 0));
+		for (int i = 0; i < num; i++) {
+			result.add(questions.get(rand));
+			questions.remove(rand);
+		}
+	}
+}

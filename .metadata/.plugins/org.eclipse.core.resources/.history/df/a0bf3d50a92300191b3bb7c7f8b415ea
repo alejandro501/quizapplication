@@ -1,0 +1,26 @@
+package ocp_q;
+
+import java.util.Scanner;
+
+public class Application {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Multiple choice or short answers? \n1. Multiple choice\nShort answers?");
+		// TODO: Handle incorrect user input format
+		if (scan.nextLine().trim().toLowerCase().equals("1")) {
+			System.out.println("add/get?");
+			if (scan.nextLine().trim().toLowerCase().equals("add")) {
+				MultipleChoiceQRepo qRepo = new MultipleChoiceQRepo();
+				qRepo.uploadQuestionFromUser();
+			} else {
+				new MultipleCoiceQuiz();
+			}
+		}
+		if(scan.nextLine().trim().toLowerCase().equals("2")){
+			
+		}
+
+		scan.close();
+	}
+}

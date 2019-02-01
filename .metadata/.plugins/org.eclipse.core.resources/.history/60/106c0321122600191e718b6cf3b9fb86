@@ -1,0 +1,12 @@
+package ocp_q;
+
+import java.util.List;
+
+public interface QuestionRepository {
+	List<? extends Question> getQuestions();
+	void add(? extends Question question);
+	boolean delete(Question question);
+	void listAll();
+	void uploadQuestionFromUser();
+	List<? extends Question> getRandomQuestion(int num);
+}

@@ -1,0 +1,107 @@
+package ocp_q;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+
+//TODO: Export method for db import
+public class MultipleChoiceQRepo implements QuestionRepository {
+	private List<MultipleChoiceQuestion> questions;
+
+	public MultipleChoiceQRepo() {
+		super();
+		this.questions = new ArrayList();
+		populate();
+	}
+
+	private void populate() {
+		this.questions.add(new MultipleChoiceQuestion("Which are the two winter sports?",
+				Arrays.asList(new MultipleChoiceAnswer("snow boarding", true),
+						new MultipleChoiceAnswer("sand boarding", false), new MultipleChoiceAnswer("skiing", true),
+						new MultipleChoiceAnswer("roller skating", false))));
+
+		this.questions.add(new MultipleChoiceQuestion("What's your name?",
+				Arrays.asList(new MultipleChoiceAnswer("Alexander", true), new MultipleChoiceAnswer("Gabriel", false),
+						new MultipleChoiceAnswer("Lucecita", false))));
+
+		this.questions.add(new MultipleChoiceQuestion("What's 2+2?", Arrays.asList(new MultipleChoiceAnswer("3", false),
+				new MultipleChoiceAnswer("4", true), new MultipleChoiceAnswer("2", false))));
+
+		this.questions.add(new MultipleChoiceQuestion("What dog breed(s) are considered to have a small build?",
+				Arrays.asList(new MultipleChoiceAnswer("greyhound", false), new MultipleChoiceAnswer("pug", true),
+						new MultipleChoiceAnswer("yorkshire terrier", true))));
+
+		this.questions.add(new MultipleChoiceQuestion("What is the capital of the U.S.?",
+				Arrays.asList(new MultipleChoiceAnswer("Chicago", false),
+						new MultipleChoiceAnswer("Long Island", false), new MultipleChoiceAnswer("Washington", true),
+						new MultipleChoiceAnswer("MIami", false))));
+
+		this.questions.add(new MultipleChoiceQuestion("Where are the two largest rollercoasters of the world?",
+				Arrays.asList(new MultipleChoiceAnswer("Japan", true), new MultipleChoiceAnswer("Germany", false),
+						new MultipleChoiceAnswer("USA", true))));
+
+		this.questions.add(new MultipleChoiceQuestion("Which is the darkest color?",
+				Arrays.asList(new MultipleChoiceAnswer("yellow", false), new MultipleChoiceAnswer("brown", false),
+						new MultipleChoiceAnswer("black", true))));
+	}
+
+	@Override
+	public List<? extends Question> getQuestions() {
+		return questions;
+	}
+	
+	@Override
+	public void add(Question question) {
+		// TODO Auto-generated method stub
+		questions.add(q);
+	}
+
+	@Override
+	public List<Question> getRandomQuestion(int num) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	// TODO: List all questions
+	public void listAll() {
+
+	}
+
+	@Override
+	// TODO: Delete question
+	public boolean delete(Question question) {
+		return false;
+	}
+
+	public void uploadQuestionFromUser() {
+		List<MultipleChoiceAnswer> answers = new ArrayList();
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter question");
+		String question = scan.nextLine();
+		while (true) {
+			System.out.println("Enter answer.");
+			String answer = scan.nextLine();
+			System.out.println("Is it true? y/n");
+			boolean isTrue = scan.nextLine().trim().toLowerCase().equals("y") ? true : false;
+			answers.add(new MultipleChoiceAnswer(answer, isTrue));
+			System.out.println("Do you have another answer? y/n");
+			if (scan.nextLine().trim().toLowerCase().equals("n"))
+				break;
+		}
+
+		MultipleChoiceQuestion q = new MultipleChoiceQuestion(question, answers);
+		this.questions.add(q);
+		System.out.println("Question added: " + q + "question list size: " + this.questions.size());
+	}
+
+	public List<MultipleChoiceQuestion> getRandomQuestions(int num) {
+		List<MultipleChoiceQuestion> result = new ArrayList();
+		for (int i = 0; i < num; i++) {
+			int rand = (int) Math.floor(Math.random() * ((questions.size() - 1) - 0));
+			result.add(questions.get(rand));
+			questions.remove(rand);
+		}
+		return result;
+	}
+}

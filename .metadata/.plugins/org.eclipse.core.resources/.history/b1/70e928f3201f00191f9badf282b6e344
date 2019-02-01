@@ -1,0 +1,38 @@
+package ocp_q;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class QuestionRepository {
+	private List<Question> questions = new ArrayList();
+
+	public List<Question> getQuestions() {
+		return questions;
+	}
+	
+	public void add(Question q){
+		questions.add(q);
+	}
+	
+	public void uploadQuestionFromUser(){
+		List<Answer> answers = new ArrayList();
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter question");
+		String question = scan.nextLine();
+		System.out.println("Question: "+question);
+		while(true){
+			System.out.println("Enter answer.");
+			String answer = scan.nextLine();
+			System.out.println("Is it true? y/n");
+			boolean isTrue = scan.nextLine().trim().toLowerCase().equals("y") ? true : false;
+			answers.add(new Answer(answer, isTrue));
+			System.out.println("Do you have another answer? y/n");
+			if(scan.nextLine().trim().toLowerCase().equals("n")) break;
+		}
+		
+		Question q = new Question(question, answers);
+		this.questions.add(q);
+		System.out.println("Question added: "+q.toString());
+	}
+}

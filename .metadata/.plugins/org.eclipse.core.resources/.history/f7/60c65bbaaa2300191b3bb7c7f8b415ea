@@ -1,0 +1,18 @@
+package ocp_q;
+
+public class ShortQuestion {
+	private String question;
+	
+	
+
+	public ShortQuestion(String question) {
+		super();
+		this.question = question;
+	}
+
+	public String getQuestion() {
+		return question;
+	}
+	
+	
+}

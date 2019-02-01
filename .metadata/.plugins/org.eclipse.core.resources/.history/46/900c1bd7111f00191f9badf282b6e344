@@ -1,0 +1,19 @@
+package ocp_q;
+
+public class Question {
+	private String question;
+	private Answer answers;
+	
+	public Question(String question, Answer answers) {
+		super();
+		this.question = question;
+		this.answers = answers;
+	}
+	public String getQuestion() {
+		return question;
+	}
+
+	public Answer getAnswers() {
+		return answers;
+	}
+}

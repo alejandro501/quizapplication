@@ -1,0 +1,102 @@
+package ocp_q;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.regex.Pattern;
+import java.util.stream.IntStream;
+
+public class Quiz {
+	QuestionRepository qRepo = new QuestionRepository();
+	List<Double> percent = new ArrayList();
+	Map<Question, int[]> failedQuestions = new HashMap();
+
+	public Quiz() {
+		super();
+		loadGame();
+	}
+
+	private void loadGame() {
+		boolean game = true;
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Welcome to the game!");
+
+		while (game) {
+			System.out.println("How many questions do you want to have?");
+			//TODO: Handle if the user wants more questions than in the repo
+			int numberOfQuestions = scan.nextInt();
+			List<Question> questions = qRepo.getRandomQuestions(numberOfQuestions);
+
+			int score = 0;
+
+			System.out.println("Print the numbers of the right answers separated by comma.");
+			//TODO: Handle incorrect user input format
+
+			for (int i = 0; i < questions.size(); i++) {
+				List<Answer> answers = questions.get(i).getAnswers();
+				System.out.println((i + 1) + ") " + questions.get(i).getQuestion());
+
+				for (int j = 0; j < answers.size(); j++) {
+					System.out.println((j + 1) + ". " + questions.get(i).getAnswers().get(j).getAnswer());
+				}
+
+				int[] userAnswers = Pattern.compile(",").splitAsStream(scan.next()).mapToInt(Integer::parseInt)
+						.toArray();
+
+				int[] rightAnswers = IntStream.range(0, answers.size())
+						.filter(answerIndex -> answers.get(answerIndex).isTrue()).map(num -> num + 1).toArray();
+
+				Arrays.sort(userAnswers);
+				if (Arrays.equals(userAnswers, rightAnswers)) {
+					System.out.println("You got it right!");
+					score++;
+				} else {
+					failedQuestions.put(questions.get(i), userAnswers);
+					System.out.println("Wrong answer.");
+				}
+
+				System.out.println("Score: " + score);
+			}
+			double pct = (double) score / questions.size() * 100;
+			percent.add(pct);
+			System.out.println("Your percent: " + String.format("%.2f", pct) + "%");
+
+			if (!failedQuestions.isEmpty())
+				failedQuestions();
+
+			System.out.println("\nDo you want to have another round? y/n");
+			if (!scan.next().toLowerCase().trim().equals("y"))
+				game = false;
+		}
+
+		scan.close();
+		evaluate();
+	}
+
+	private void failedQuestions() {
+		System.out.println("You failed the following questions: \n");
+
+		for (Question k : failedQuestions.keySet()) {
+			int[] values = failedQuestions.get(k);
+			System.out.println(k.getQuestion());
+			System.out.println("Your answers: ");
+			for (int i = 0; i < values.length; i++) {
+				System.out.println("- " + k.getAnswers().get(values[i] - 1).getAnswer());
+			}
+			System.out.println("\n Right answers: ");
+			for (int i = 0; i < k.getAnswers().size(); i++) {
+				if (k.getAnswers().get(i).isTrue())
+					System.out.println("- " + k.getAnswers().get(i).getAnswer());
+			}
+			System.out.println();
+		}
+
+	}
+
+	private void evaluate() {
+		
+	}
+}

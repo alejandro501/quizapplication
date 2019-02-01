@@ -1,0 +1,23 @@
+package ocp_q;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ShortAnswerQRepo {
+	private List<ShortQuestion> questions;
+
+	public ShortAnswerQRepo(List<ShortQuestion> questions) {
+		super();
+		this.questions = new ArrayList();
+		populate();
+	}
+
+	public List<ShortQuestion> getQuestions() {
+		return questions;
+	}
+	
+	private void populate(){
+		
+	}
+
+}
